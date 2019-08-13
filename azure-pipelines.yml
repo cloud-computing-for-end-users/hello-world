@@ -33,8 +33,7 @@ stages:
 
 
 name: "build pipeline for hello-world repositorie"
-#trigger: master
-stages: [ stage_build ]
+trigger: master
 
 
 
