@@ -3,19 +3,41 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
 
+#trigger:
+#- master
+
+
+#hello world example
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/dotnet-core?view=azure-devops
+
+
+# examples of other options: 'macOS-10.13', 'vs2017-win2016'
 pool:
-  vmImage: 'ubuntu-latest'
-
+  vmImage: 'ubuntu-latest' 
+  
+# do this before all your .NET Core tasks
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: DotNetCoreInstaller@0
+  inputs:
+    version: '2.1.300'
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: build
+    projects: '**/*.csproj'
+#    arguments: '--configuration Release' # Update this to match your need
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
-- bash: ./test.sh
+
+
+#steps:
+#- script: echo Hello, world!
+#  displayName: 'Run a one-line script'
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'
+
+#- bash: ./test.sh
