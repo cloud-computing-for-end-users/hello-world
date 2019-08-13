@@ -27,7 +27,7 @@ steps:
     command: build
     projects: '**/*.csproj'
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: Test
   inputs:
     command: 'test'
     projects: '**/*Tests/*.csproj'
