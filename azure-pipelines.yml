@@ -30,7 +30,7 @@ steps:
   displayName: Test
   inputs:
     command: 'test'
-    projects: '**/*Tests/*.csproj'
+    projects: '**/-tests/*.csproj'
 #    arguments: '--configuration Release' # Update this to match your need
 
 
