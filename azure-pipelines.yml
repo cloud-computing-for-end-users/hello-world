@@ -33,18 +33,6 @@ steps:
     projects: '**/*tests/*.csproj'
 #    arguments: '--configuration Release' # Update this to match your need
 - task: PublishBuildArtifacts@1
-  displayName: publish build artifacts
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: ourCoolArtifact
-- task: CopyFiles@2
-  inputs:
-    contents: _buildOutput\**
-    targetFolder: $(Build.ArtifactStagingDirectory)
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: $(Build.ArtifactStagingDirectory)
-    artifactName: MyBuildOutputs
 
 #steps:
 #- script: echo Hello, world!
