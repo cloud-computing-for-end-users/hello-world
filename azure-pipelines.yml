@@ -36,7 +36,15 @@ steps:
   displayName: publish build artifacts
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: drop
+    artifactName: ourCoolArtifact
+- task: CopyFiles@2
+  inputs:
+    contents: _buildOutput\**
+    targetFolder: $(Build.ArtifactStagingDirectory)
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: MyBuildOutputs
 
 #steps:
 #- script: echo Hello, world!
