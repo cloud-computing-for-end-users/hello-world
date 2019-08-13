@@ -18,7 +18,7 @@ steps:
 - script: echo hello, from kenneths build
 
 jobs:
--job: job_build
+- job: job_build
   displayName : the job builder
   strategy: 
     maxParallel : 2
@@ -27,7 +27,7 @@ jobs:
 
 
 stages:
-  -stage: stage_build
+- stage: stage_build
   displayName : Building the projects
   jobs: [job_build]
 
