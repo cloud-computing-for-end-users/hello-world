@@ -27,11 +27,6 @@ steps:
     command: build
     projects: '**/*.csproj'
 #    arguments: '--configuration Release' # Update this to match your need
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    command: build
-    projects: '**/*.csproj'
 - task: DotNetCoreCLI@3
   inputs:
     command: test
