@@ -7,10 +7,6 @@
 #trigger:
 #- master
 
-name: "build pipeline for hello-world repositorie"
-#trigger: master
-stages: [ stage_build ]
-
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -34,6 +30,13 @@ stages:
   -stage: stage_build
   displayName : Building the projects
   jobs: [job_build]
+
+
+name: "build pipeline for hello-world repositorie"
+#trigger: master
+stages: [ stage_build ]
+
+
 
 
 #steps:
