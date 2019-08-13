@@ -8,7 +8,7 @@
 #- master
 
 name: "build pipeline for hello-world repositorie"
-trigger: master
+#trigger: master
 stages: [ stage_build ]
 
 
