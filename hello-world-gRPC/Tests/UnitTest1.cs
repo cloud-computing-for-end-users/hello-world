@@ -1,22 +1,24 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework.Internal;
+using NUnit.Framework;
 
 namespace Tests
 {
-    [TestClass]
-    public class UnitTest1
+    public class Tests
     {
-        [TestMethod]
-        public void TestMethod1()
+        [SetUp]
+        public void Setup()
         {
-            Assert.Fail("I made this to demon strate a test fail");
         }
 
-
-        [TestMethod]
-        public void TestMethod2()
+        [Test]
+        public void Test1()
         {
-            //made this to show a test sucess
+            Assert.Pass();
+        }
+
+        [Test]
+        public void Test2()
+        {
+            Assert.Fail();
         }
     }
 }
