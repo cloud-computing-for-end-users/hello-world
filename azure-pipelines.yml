@@ -26,12 +26,12 @@ steps:
   inputs:
     command: build
     projects: '**/*.csproj'
-#    arguments: '--configuration Release' # Update this to match your need
-- task: DotNetCoreCLI@3
+- task: DotNetCoreCLI@2
+  displayName: Build
   inputs:
-    command: test
-    projects: '**/*Tests/*.csproj'    
-
+    command: 'test'
+    projects: '**/*Tests/*.csproj'
+#    arguments: '--configuration Release' # Update this to match your need
 
 
 #steps:
