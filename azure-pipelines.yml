@@ -32,6 +32,7 @@ steps:
     command: 'test'
     projects: '**/*tests/*.csproj'
 #    arguments: '--configuration Release' # Update this to match your need
+- task: PublishBuildArtifacts@1
 - task: DownloadBuildArtifacts@0
   inputs:
     artifactName: theAwsomAtriFact
