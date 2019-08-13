@@ -3,19 +3,46 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
+
+#trigger:
+#- master
+
+name: "build pipeline for hello-world repositorie"
+trigger: master
+stages: [ stage_build ]
+
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+
+
+steps:
+- script: echo hello, from kenneths build
+
+jobs:
+-job: job_build
+  displayName : the job builder
+  strategy: 
+    maxParallel : 2
+  continueOnError: false
+  steps: []
+
+
+stages:
+  -stage: stage_build
+  displayName : Building the projects
+  jobs: [job_build]
+
+
+#steps:
+#- script: echo Hello, world!
+#  displayName: 'Run a one-line script'
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'
 
 - bash: ./test.sh
