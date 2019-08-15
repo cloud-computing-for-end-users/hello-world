@@ -26,7 +26,7 @@ steps:
   inputs:
     command: build
     projects: '$(Build.projects)'
-    arguments: '--configuration Release'
+    arguments: '--configuration Release -o /home/vsts/work/1/a'
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
