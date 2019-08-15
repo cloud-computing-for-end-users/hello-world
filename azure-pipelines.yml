@@ -35,6 +35,9 @@ steps:
     arguments: '-o /home/vsts/work/1/s/'
     verbosityPack: 'Detailed'
 #    arguments: '--configuration Release' # Update this to match your need
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: NUnit
 - task: PublishBuildArtifacts@1
 
 #- task: DownloadBuildArtifacts@0
