@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "transfer-file-NetMQ-hello-world", "transfer-file-NetMQ-hello-world\transfer-file-NetMQ-hello-world.csproj", "{34845120-4227-4E4E-88F6-F04380D45007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "transfer-file-NetMQ-hello-world-server", "transfer-file-NetMQ-hello-world-server\transfer-file-NetMQ-hello-world-server.csproj", "{45565309-0C57-48FA-B8A2-D9729E2AA2DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34845120-4227-4E4E-88F6-F04380D45007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34845120-4227-4E4E-88F6-F04380D45007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34845120-4227-4E4E-88F6-F04380D45007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34845120-4227-4E4E-88F6-F04380D45007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45565309-0C57-48FA-B8A2-D9729E2AA2DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45565309-0C57-48FA-B8A2-D9729E2AA2DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45565309-0C57-48FA-B8A2-D9729E2AA2DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45565309-0C57-48FA-B8A2-D9729E2AA2DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A70956DB-7F96-4EE4-87FE-3F6EE0D3D220}
+	EndGlobalSection
+EndGlobal
