@@ -32,7 +32,7 @@ steps:
   inputs:
     command: 'test'
     projects: '$(Build.tests)'
-    arguments: '-o /home/vsts/work/1/s/'
+    arguments: '-o /home/vsts/work/1/s/ -r $(Path.Test.Results)'
     verbosityPack: 'Detailed'
 #    arguments: '--configuration Release' # Update this to match your need
 - task: PublishTestResults@2
