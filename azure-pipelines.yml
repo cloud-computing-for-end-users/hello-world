@@ -39,6 +39,8 @@ steps:
 - task: DownloadBuildArtifacts@0
   inputs:
     artifactName: theAwsomAtriFact
+    buildType: current
+    buildVersionToDownload: latest
 
 #steps:
 #- script: echo Hello, world!
