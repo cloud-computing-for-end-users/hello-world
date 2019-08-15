@@ -25,14 +25,14 @@ steps:
   displayName: Build
   inputs:
     command: build
-    projects: '**/*.csproj'
+    projects: '$(Build.projects)'
     arguments: '--configuration Release'
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
     command: 'test'
-    projects: '**/*tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    projects: '$(Build.tests)'
+    arguments: '--configuration Release'
 #    arguments: '--configuration Release' # Update this to match your need
 - task: PublishBuildArtifacts@1
 - task: DownloadBuildArtifacts@0
