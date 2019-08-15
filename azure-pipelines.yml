@@ -33,6 +33,7 @@ steps:
   inputs:
     command: 'test'
     projects: '**/*tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
 #    arguments: '--configuration Release' # Update this to match your need
 - task: PublishBuildArtifacts@1
 - task: DownloadBuildArtifacts@0
