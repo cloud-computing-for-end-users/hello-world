@@ -1,6 +1,13 @@
 # Custom
 electron-client-hello-world/electroncgi.log
 electron-client-hello-world/dist/
+*.lock
+*.dtbcache
+*.ide
+*.ide-wal
+*.ide-shm
+*.testlog
+*.manifest
 
 package-lock.json
 node_modules/
