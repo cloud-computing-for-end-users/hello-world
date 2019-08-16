@@ -14,7 +14,8 @@
 
 # examples of other options: 'macOS-10.13', 'vs2017-win2016'
 pool:
-  vmImage: 'ubuntu-latest' 
+  vmImage: 'windows-latest'
+#  vmImage: 'ubuntu-latest' 
   
 # do this before all your .NET Core tasks
 steps:
