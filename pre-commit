@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+# To enable this hook, rename this file to "pre-commit".
+
+printf "\nEnforcing Policies..."
+
+regex="/\[CC-(\d+)\]/"
+
+# get current branch name
+currentbranch=`git branch | grep \* | cut -d ' ' -f2`
+# get commits
+commits=`git log $currentbranch --pretty=format:"%H"`
+# iterate commits
+for i in $commits;
+	do 
+	# get commit message
+	gitmessage=`git log --format=%B -n 1 "$i"`
+	# check commit message against regexp
+	if [[ ! $gitmessage =~ ^CC-(\d+)$ ]]
+	then
+		# fail if not matched
+		printf "\nCommit message doesn't reference an issue."
+		printf "\nSee commit message: \"$gitmessage\""
+		exit 1
+	fi
+	done
