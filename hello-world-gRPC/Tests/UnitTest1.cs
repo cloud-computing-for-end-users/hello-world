@@ -15,5 +15,9 @@ namespace Tests
         {
             Assert.Pass();
         }
+        public void Test2()
+        {
+            Assert.Fail();
+        }
     }
 }
