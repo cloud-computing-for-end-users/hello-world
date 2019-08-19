@@ -41,7 +41,7 @@ steps:
   displayName: Test
   inputs:
     testSelector: 'testAssemblies'
-    testAssemblyVer2: '**\\*Tests.dll'
+    testAssemblyVer2: '$(Test.projectname.filter)'
     searchFolder: '$(Build.output.dir)'
 
 #- task: DotNetCoreCLI@2
