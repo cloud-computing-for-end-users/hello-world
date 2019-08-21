@@ -24,31 +24,35 @@ steps:
     version: '2.1.300'
 
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: .NET Core Build
   inputs:
     command: build
     projects: '$(Build.projects)'
     arguments: '--configuration Release -o $(Build.output.dir)'
 
 - task: DotNetCoreCLI@2
+  displayName: .NET Core Publish
   inputs:
     command: 'publish'
-    publishWebProjects: True
+    publishWebProjects: False
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
 
 - task: PublishBuildArtifacts@1
+  displayName: Publish Test 1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop1'
     publishLocation: 'Container'
 
 - task: PublishBuildArtifacts@1
+  displayName: Publish Test 2
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop2'
 
 - task: PublishPipelineArtifact@1
+  displayName: Publish Test 3
   inputs:
     targetPath: '$(Pipeline.Workspace)'
     artifact: 'drop3'
