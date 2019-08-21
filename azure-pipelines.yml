@@ -23,12 +23,6 @@ steps:
   inputs:
     version: '2.1.300'
 
-
-
-
-
-
-
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
@@ -36,6 +30,28 @@ steps:
     projects: '$(Build.projects)'
     arguments: '--configuration Release -o $(Build.output.dir)'
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop1'
+    publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop2'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'drop3'
 
 - task: VSTest@2
   displayName: Test
@@ -44,42 +60,6 @@ steps:
     testAssemblyVer2: '$(Test.projectname.filter)'
     searchFolder: '$(Build.output.dir)'
 
-#- task: DotNetCoreCLI@2
-#  displayName: Test
-#  inputs:
-#    command: 'test'
-#    projects: '$(Build.tests)'
-#    arguments: '-o /home/vsts/work/1/s/ -r $(Path.Test.Results)'
-#    verbosityPack: 'Detailed'
-#    arguments: '--configuration Release' # Update this to match your need
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: NUnit
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'drop2'
-
-#- task: DownloadBuildArtifacts@0
-#  inputs:
-#    artifactName: theAwsomAtriFact
-#    buildType: current
-#    buildVersionToDownload: latest
-
-#steps:
-#- script: echo Hello, world!
-#  displayName: 'Run a one-line script'
-
-#- script: |
-#    echo Add other tasks to build, test, and deploy your project.
-#    echo See https://aka.ms/yaml
-#  displayName: 'Run a multi-line script'
-
-#- bash: ./test.sh
