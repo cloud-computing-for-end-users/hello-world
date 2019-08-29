@@ -75,7 +75,7 @@ namespace ConsoleApp2
                             imageDataSize -= MAX_REVICE_BUFFER_SIZE;
                             //read maxReciveSize
                             connection.Receive(fileBuffer);
-                            //fs.Write(fileBuffer);
+                            fs.Write(fileBuffer);
                         }
                         if (imageDataSize > 0)
                         {
@@ -83,7 +83,7 @@ namespace ConsoleApp2
                             var imageBuffer = new byte[imageDataSize];
                             connection.Receive(imageBuffer);
                             imageDataSize = 0;
-                            //fs.Write(fileBuffer, 0, imageBuffer.Length);
+                            fs.Write(imageBuffer, 0, imageBuffer.Length);
                         }
                         Console.WriteLine("Remaining data to recive: " + imageDataSize);
 
