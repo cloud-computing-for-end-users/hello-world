@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>net_mq_client</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NetMQ" Version="4.0.0.207" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\net-mq-tier-two\net-mq-tier-two.csproj" />
+  </ItemGroup>
+
+</Project>
