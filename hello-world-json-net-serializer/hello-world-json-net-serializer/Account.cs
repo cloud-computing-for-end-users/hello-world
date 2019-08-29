@@ -10,5 +10,6 @@ namespace hello_world_json_net_serializer
         public bool Active { get; set; }
         public DateTime CreatedDate { get; set; }
         public IList<string> Roles { get; set; }
+        public Name MaName { get; set; }
     }
 }
