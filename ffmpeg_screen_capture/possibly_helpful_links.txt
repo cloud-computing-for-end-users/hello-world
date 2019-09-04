@@ -1,0 +1,10 @@
+Stack Exchange and Overflow
+https://video.stackexchange.com/questions/25390/ffmpeg-live-stream-into-a-browser-video-tag-localhost-only
+https://stackoverflow.com/questions/1735933/streaming-via-rtsp-or-rtp-in-html5
+https://stackoverflow.com/questions/5858936/html5-live-streaming.
+
+Unreal Media Server FAQ
+http://umediaserver.net/umediaserver/faq.html
+
+WebRTC Getting Started
+https://webrtc.org/start/
