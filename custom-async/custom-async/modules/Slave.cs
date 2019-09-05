@@ -1,62 +1,43 @@
-﻿using System;
+﻿using custom_async.modules;
+using custom_async.proxies;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace custom_async
 {
-    public class Slave : BaseModule
+    public class Slave : BaseClientModule
     {
-        private SlaveOwnerSM so;
-        private int moduleID = -1;
-
         Dictionary<int, Action<object>> callIDToCallBack = new Dictionary<int, Action<object>>();
 
-        public Slave(SlaveOwnerSM so)
+        public Slave() : base( ModuleType.Slave)
         {
-            this.so = so;
-            this.so.RegisterSlave(this.moduleID, this);
         }
+
+
+
+
 
         //TODO this is the method that will be called to test everything
         public void GetInformationFromSlaveOwner()
         {
-            var message = new Message()
-            {
-                SenderModuleID = this.moduleID,
-                CallID = 1,
-                TargetModuleID = 1,
-                TheMessage = "I want"
-            };
-            callIDToCallBack.Add(message.CallID, GotInformationFromSlaveOwner);
-            so.ReciveMessage(message);
+            new SlaveOwnerProxy(base.communicationHub, base.proxyHelper, this).GetTheDataForSlave(ReciveInformationFromSlaveOwner);
         }
-
-        public virtual void GotInformationFromSlaveOwner(object str)
+        private void ReciveInformationFromSlaveOwner(string response)
         {
-            if(str is string _str)
-            {
-                Console.WriteLine("A catually got the infromation from the slave server: ");
-                Console.WriteLine(_str);
-            }
-
+            Console.WriteLine("I got the response from the slave owner in the callback: " + response);
         }
 
-        public override void HandleRequest(Message message)
+
+        public void MakeSODoSomethingElse()
         {
-            throw new NotImplementedException();
+            new SlaveOwnerProxy(base.communicationHub, base.proxyHelper, this).DoSomethingElse(HandleResponseFromSomethingElse);
         }
-
-        //Console.WriteLine("The slave got a reponse to its call: " + message.TheMessage);
-
-
-        public void ReciveMessage(Message message)
+        private void HandleResponseFromSomethingElse(int num)
         {
-            callIDToCallBack[message.CallID].Invoke(message.TheMessage);
+            Console.WriteLine("Num from serverModule: " + num);
         }
 
-        public override void Setup(ProxyHelper proxyHelper)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

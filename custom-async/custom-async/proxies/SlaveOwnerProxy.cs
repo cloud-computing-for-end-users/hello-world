@@ -1,4 +1,5 @@
-﻿using System;
+﻿using custom_async.modules;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,47 +8,34 @@ namespace custom_async.proxies
     //I THINK THIS PROXY IS ACTUALLY RIGHT
     public class SlaveOwnerProxy : BaseProxy
     {
-        public SlaveOwnerProxy(
-            BaseModule baseServermodule,
-            ProxyHelper proxyHelper
-            )
+        public SlaveOwnerProxy(BaseRouterModule baseRouterModule, ProxyHelper proxyHelper, BaseModule baseModule) : base(baseRouterModule, proxyHelper, baseModule)
         {
-            //this.serverModule = serverModule;
-            this.proxyHelper = proxyHelper;
-            this.baseServermodule = baseServermodule;
+        }
+
+        protected override void SendMessage(Action<Response> callBack, string payload)
+        {
+            base.SendMessage(callBack, BaseModule.ModuleType.SlaveOwnerServermodule, payload);
         }
 
         public void GetTheDataForSlave(Action<string> callBack)
         {
-            int callID = base.GenerateAndReserveCallID();
-            var messageToSend = new Message()
-            {
-                SenderModuleID = base.proxyHelper.ModuleID,
-                CallID = callID,
-                TargetModuleType = ServerModule.ModuleType.SlaveOwner
-
-            };
-
             Action<Response> theCallBack = res =>
             {
                 callBack.Invoke(res.TheResponse + "I got enclosed");
 
             };
-
-            base.callIDToResponseHandler[callID] = theCallBack;
-
-            base.proxyHelper.SendMessage(messageToSend, this);
+            SendMessage(theCallBack, Const.REQ_FROM_SLAVE);
         }
 
-        public override void HandleResponse(Response response)
+        public void DoSomethingElse(Action<int> callBack)
         {
-            if (base.callIDToResponseHandler.ContainsKey(response.CallID))
+            Action<Response> theCallBack = res =>
             {
-                //handle the response
-                callIDToResponseHandler[response.CallID].Invoke(response);
-            }
+                callBack.Invoke(Convert.ToInt32(res.TheResponse));
 
-            throw new Exception("That response is not recognised");
+            };
+
+            SendMessage(theCallBack, Const.REQ_SMTH_FROM_SO);
         }
     }
 }

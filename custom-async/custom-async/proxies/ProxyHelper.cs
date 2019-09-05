@@ -1,44 +1,42 @@
-﻿using System;
+﻿using custom_async.modules;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using static custom_async.ServerModule;
 
 namespace custom_async
 {
     public class ProxyHelper
     {
-        ServerModule serverModule;
-        BaseModule baseServermodule;
+        private BaseRouterModule routerModule;
+        private BaseModule baseModule;
 
-        private int moduleID;
-        public int ModuleID { get { return this.moduleID; } }
+        public int ModuleID { get { return baseModule.ModuleID; } }
 
         //public static readonly ProxyHelper INSTANCE = new ProxyHelper();
         private Dictionary<int, BaseProxy> callIDToReponseHandler = new Dictionary<int, BaseProxy>();
 
-        public ProxyHelper(ModuleType moduleType)
+        public ProxyHelper()
         {
-            this.moduleID = ServerModule.RegisterModule(moduleType, this);
-
         }
 
-        public void Setup(ServerModule serverModule, BaseModule baseServermodule)
+        public void Setup(BaseRouterModule routerModule, BaseModule baseModule)
         {
-            this.serverModule = serverModule;
-            this.baseServermodule = baseServermodule;
+            this.routerModule = routerModule;
+            this.baseModule = baseModule;
         }
 
         public void SendResponse(Response response)
         {
-            this.serverModule.HandleResponse(response);
+            this.routerModule.HandleSendable(response);
 
         }
-        public int SendMessage(Message message, BaseProxy baseProxy)
+        public void SendMessage(Message message, BaseProxy baseProxy)
         {
-            var callID = new Random().Next();
+            //var callID = new Random().Next();
 
-            callIDToReponseHandler.Add(callID, baseProxy);
-            return callID;
+            callIDToReponseHandler.Add(message.CallID, baseProxy);
+            routerModule.HandleSendable(message);
+            //return callID;
         }
 
         public void ReciveSendable(Sendable sendable)
@@ -46,7 +44,14 @@ namespace custom_async
             if (sendable is Message message)
             {
                 //this is a request
-                this.baseServermodule.HandleRequest(message);
+                if (baseModule is BaseServerModule _baseServerModule)
+                {
+                    _baseServerModule.HandleRequest(message);
+                }
+                else
+                {
+                    throw new Exception("Not supported");
+                }
             }
             else if (sendable is Response response)
             {

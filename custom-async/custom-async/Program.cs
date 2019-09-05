@@ -9,24 +9,42 @@ namespace custom_async
         static void Main(string[] args)
         {
 
-            var SoProxyHelper = new ProxyHelper(ServerModule.ModuleType.SlaveOwner);
-            var FileProxyHelper = new ProxyHelper(ServerModule.ModuleType.FileServer);
-            var SMProxyHelper = new ProxyHelper(ServerModule.ModuleType.ServerModule);
+            //var SoProxyHelper = new ProxyHelper(ServerModule.ServerModuleType.SlaveOwner);
+            //var FileProxyHelper = new ProxyHelper(ServerModule.ServerModuleType.FileServer);
+            //var SMProxyHelper = new ProxyHelper(ServerModule.ServerModuleType.ServerModule);
+            //var slaveProxyHelper = new ProxyHelper();
 
             var sm = new ServerModule();
             var so = new SlaveOwnerSM();
             var fsm = new FileSM();
+            var slave = new Slave();
 
-            SoProxyHelper.Setup(sm, so);
-            FileProxyHelper.Setup(sm, fsm);
-            SMProxyHelper.Setup(sm, sm);
+            sm.Setup(sm);
+            so.Setup(sm);
+            fsm.Setup(sm);
+            slave.Setup(so);
 
-            so.
-
-            so.Start();
-
-            var slave = new Slave(so);
             slave.GetInformationFromSlaveOwner();
+             slave.MakeSODoSomethingElse();
+            Console.ReadKey();
+
+            //SoProxyHelper.Setup(sm, so);
+            //FileProxyHelper.Setup(sm, fsm);
+            //SMProxyHelper.Setup(sm, sm);
+            //slaveProxyHelper.Setup(sm,slave )
+
+            //sm.Setup();
+            //so.Setup();
+            //fsm.Setup();
+
+
+            ////so.
+
+            ////so.Start();
+
+            //slave.Setup(slaveProxyHelper);
+
+            //slave.GetInformationFromSlaveOwner();
         }
 
         public static void ReciveMessageInSlave(Message message)
