@@ -2,6 +2,7 @@
 electron-client-hello-world/electroncgi.log
 electron-client-hello-world/dist/
 electron-client-hello-world/release-builds/
+hello-world-py-auto-gui/*.jpg
 *.lock
 *.dtbcache
 *.ide

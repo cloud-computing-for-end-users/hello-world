@@ -1,7 +1,7 @@
 
 import sys
 # used to point to the location of the PyAutoGui library
-sys.path.append('C:\\Users\\MSI\\Desktop\\module')
+# sys.path.append('C:\\Users\\MSI\\Desktop\\module')
 import pyautogui
 import socket
 

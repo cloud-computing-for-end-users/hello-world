@@ -8,26 +8,19 @@ namespace ConsoleApp2
 {
     class Program
     {
-        private const int images_to_recive_before_breakup = 100;
+        private const int images_to_recive_before_breakup = 500;
         private static int MAX_REVICE_BUFFER_SIZE = 100000;
         static void Main(string[] args)
         {
             Console.WriteLine("Should recive images from a python process");
             DoAllTheStuff();
             Console.WriteLine(DateTime.Now);
-
-
         }
 
         private static void DoAllTheStuff()
         {
-
             IPAddress ipAddr = IPAddress.Any;
             IPEndPoint localEndPoint = new IPEndPoint(ipAddr, 30303);
-
-
-
-
 
             var reciver = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             reciver.Bind(localEndPoint);
@@ -38,7 +31,7 @@ namespace ConsoleApp2
                 Console.WriteLine("Connection established with: " + connection.ToString());
                 int counter = 0;
                 string fileName = string.Empty;
-                string filePath = @"C:\Users\MSI\Desktop\imagesFromPython\";
+                string filePath = @"C:\Users\kryst\Downloads\imagesFromPython\";
 
                 var startTime = DateTime.Now;
                 Console.WriteLine("Starting to recive images at: " + startTime);
@@ -63,7 +56,8 @@ namespace ConsoleApp2
                         continue;
                     }
 
-                    fileName = ++counter + ".jpg";
+                    //fileName = ++counter + ".jpg";
+                    fileName = "img.jpg";
                     using (var fs = new FileStream(filePath + fileName, FileMode.Create, FileAccess.Write))
                     {
                         while ((imageDataSize - MAX_REVICE_BUFFER_SIZE) > 0)
