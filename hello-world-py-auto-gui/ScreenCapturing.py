@@ -10,6 +10,11 @@ import queue
 import socket
 import time
 
+
+windows = pyautogui.getAllTitles()
+
+
+'''
 ourQueue = queue.Queue()
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -58,7 +63,7 @@ print("\nstarted worker threads and putting main thread to sleep in a loop")
 
 while(True):
     time.sleep(0.1)
-
+'''
 
 
 
