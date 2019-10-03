@@ -5,7 +5,6 @@ if($RunServerModules) {
     # server module
     cd $PSScriptRoot\..\server-module\src\server-module\server-module
     Start-Process cmd.exe -ArgumentList "/C dotnet run && pause"
-    Start-Sleep -Seconds 7
 
     # slave owner servermodule
     cd $PSScriptRoot\..\slave-owner-servermodule\src\slave-owner-servermodule\slave-owner-servermodule
