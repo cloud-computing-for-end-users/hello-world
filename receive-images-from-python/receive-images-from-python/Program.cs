@@ -8,16 +8,16 @@ namespace ConsoleApp2
 {
     class Program
     {
-        private const int images_to_recive_before_breakup = 500;
+        //private const int images_to_recive_before_breakup = 500;
         private static int MAX_REVICE_BUFFER_SIZE = 100000;
         static void Main(string[] args)
         {
             Console.WriteLine("Should recive images from a python process");
-            DoAllTheStuff();
+            StartRecivingImages();
             Console.WriteLine(DateTime.Now);
         }
 
-        private static void DoAllTheStuff()
+        public static void StartRecivingImages()
         {
             IPAddress ipAddr = IPAddress.Any;
             IPEndPoint localEndPoint = new IPEndPoint(ipAddr, 30303);
@@ -38,11 +38,11 @@ namespace ConsoleApp2
 
                 while (true)
                 {
-                    if(images_to_recive_before_breakup == counter)
-                    {
-                        Console.WriteLine("Recived " + images_to_recive_before_breakup + " images in : " + DateTime.Now.Subtract(startTime));
-                        break;
-                    }
+                    //if(images_to_recive_before_breakup == counter)
+                    //{
+                    //    Console.WriteLine("Recived " + images_to_recive_before_breakup + " images in : " + DateTime.Now.Subtract(startTime));
+                    //    break;
+                    //}
                     var imageSizeBuffer = new byte[sizeof(int)];
 
                     connection.Receive(imageSizeBuffer);
