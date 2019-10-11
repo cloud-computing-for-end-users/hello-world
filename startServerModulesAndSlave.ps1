@@ -1,16 +1,20 @@
+function StartModule {
+    param ([string]$moduleName)
+    switch($moduleName) {
+        'server' { StartAndSleep('server-module\src\server-module') }
+        'slave-owner' { StartAndSleep('slave-owner-servermodule\src\slave-owner-servermodule') }
+        'slave' { StartAndSleep('slave-module\src\slave-controller') }
+        'database' { StartAndSleep('database-servermodule\src\database-servermodule') }
+    }
+}
 
-$RunServerModules = $True # $False
-
-if($RunServerModules) {
-    # server module
-    cd $PSScriptRoot\..\server-module\src\server-module\server-module
-    Start-Process cmd.exe -ArgumentList "/C dotnet run && pause"
-
-    # slave owner servermodule
-    cd $PSScriptRoot\..\slave-owner-servermodule\src\slave-owner-servermodule\slave-owner-servermodule
+function StartAndSleep($path) {
+    cd $PSScriptRoot\..\$path
     Start-Process cmd.exe -ArgumentList "/C dotnet run && pause"
     Start-Sleep -Seconds 7
 }
-# slave module
-cd $PSScriptRoot\..\slave-module\src\slave-controller
-Start-Process cmd.exe -ArgumentList "/C dotnet run && pause"
+
+StartModule('server')
+StartModule('slave-owner')
+#StartModule('slave')
+StartModule('database')
