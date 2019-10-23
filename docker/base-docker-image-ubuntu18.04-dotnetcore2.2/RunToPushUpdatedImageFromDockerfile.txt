@@ -1,0 +1,11 @@
+#login to docker hub
+docker login -u gaticks -p 3026b6da-f126-4180-8e88-9aa6243adb76
+
+# rebuild image from docker file
+docker build -t gaticks/bachelor-project:BaseUbuntuNetCore2.2 .
+
+#push the image to docker hub
+docker push gaticks/bachelor-project:BaseUbuntuNetCore2.2
+
+# to run the image interactively
+docker run -it gaticks/bachelor-project:BaseUbuntuNetCore2.2
