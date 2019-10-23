@@ -7,7 +7,7 @@ namespace transfer_file_NetMQ_hello_world
 {
     class Program
     {
-        private const string path = @"C:\Users\MSI\Desktop\bla\testFileToSend.txt";
+        private const string path = @"C:\Users\MSI\Desktop\bigFile.txt";
 
         static void Main(string[] args)
         {
