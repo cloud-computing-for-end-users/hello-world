@@ -9,3 +9,14 @@ docker push gaticks/bachelor-project:BaseUbuntuNetCore2.2
 
 # to run the image interactively
 docker run -it gaticks/bachelor-project:BaseUbuntuNetCore2.2
+
+#server-module
+# build & push
+docker build -t gaticks/bachelor-project:server-module .
+docker push gaticks/bachelor-project:server-module
+#slave owner
+docker build -t gaticks/bachelor-project:slave-owner .
+docker push gaticks/bachelor-project:slave-owner
+#database-servermodule
+docker build -t gaticks/bachelor-project:database-servermodule .
+docker push gaticks/bachelor-project:database-servermodule
