@@ -6,9 +6,17 @@ netsh interface portproxy show v4tov4
 netsh interface portproxy delete v4tov4 listenport=60252
 netsh interface portproxy delete v4tov4 listenport=60253
 netsh interface portproxy delete v4tov4 listenport=60254
+netsh interface portproxy delete v4tov4 listenport=60452
+netsh interface portproxy delete v4tov4 listenport=60453
+netsh interface portproxy delete v4tov4 listenport=60454
+
 
 #add rule
-netsh interface portproxy add v4tov4 listenport=60252 connectport=10142 connectaddress=172.17.242.67 protocol=tcp
-netsh interface portproxy add v4tov4 listenport=60253 connectport=10143 connectaddress=172.17.242.67 protocol=tcp
-netsh interface portproxy add v4tov4 listenport=60254 connectport=30303 connectaddress=172.17.242.67 protocol=tcp
+netsh interface portproxy add v4tov4 listenport=60452 connectport=60452 connectaddress=172.17.99.70 protocol=tcp
+netsh interface portproxy add v4tov4 listenport=60453 connectport=60453 connectaddress=172.17.99.70 protocol=tcp
+netsh interface portproxy add v4tov4 listenport=60454 connectport=30303 connectaddress=172.17.99.70 protocol=tcp
+
+netsh interface portproxy add v4tov4 listenport=60252 connectport=60252 connectaddress=192.168.132.91 protocol=tcp
+netsh interface portproxy add v4tov4 listenport=60253 connectport=60253 connectaddress=192.168.132.91 protocol=tcp
+netsh interface portproxy add v4tov4 listenport=60254 connectport=30303 connectaddress=192.168.132.91 protocol=tcp
 netsh interface portproxy add v4tov4 listenport=8001  connectport=80    connectaddress=127.0.0.1
